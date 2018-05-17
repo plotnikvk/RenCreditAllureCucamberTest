@@ -78,7 +78,7 @@ public class CalculatorSteps {
                 .getText());
     }
 
-    @Step("проверено что автоматически заполнилось поле К снятию через 9 месяцев – {replenish}")
+    @Step("проверено что автоматически заполнилось поле К снятию через 9 месяцев – {result}")
 
     public void checkCalcResultField(String result) {
         Assert.assertEquals("Ожидаемое число и действительное отличаются", result, calculatorPage.calcResult
