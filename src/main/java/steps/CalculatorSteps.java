@@ -16,7 +16,7 @@ public class CalculatorSteps {
 
     CalculatorPage calculatorPage = new CalculatorPage();
     WebDriverWait wait = new WebDriverWait(BaseSteps.getDriver(),
-            5);
+            10);
 
     @Step("появился заголовок - {expectedTitle}")
     public void checkPageTitle(String expectedTitle) {
@@ -36,9 +36,9 @@ public class CalculatorSteps {
     }
 
     @Step("выбран срок вклада - {termOfDeposit}")
-    public void selectTermOfDeposit(int termOfDeposit) {
+    public void selectTermOfDeposit(String termOfDeposit) {
         Select timeSelect = new Select(calculatorPage.selectTermOfdepositButton);
-        timeSelect.selectByIndex(termOfDeposit);
+        timeSelect.selectByValue(termOfDeposit);
     }
 
     @Step("выбрано ежемесячное пополнение на сумму - {replenishment}")
@@ -60,6 +60,7 @@ public class CalculatorSteps {
     @Step("проверено что автоматически заполнилось поле Ставка - {rate}")
 
     public void checkRateField(String rate) {
+        wait.until(ExpectedConditions.visibilityOf(calculatorPage.rate));
         Assert.assertEquals("Ожидаемое число и действительное отличаются", rate, calculatorPage.rate
                 .getText());
     }

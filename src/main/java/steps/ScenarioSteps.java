@@ -35,23 +35,23 @@ public class ScenarioSteps {
     public void selectTermOfDeposit(String termOfDeposit){
         switch (termOfDeposit) {
             case "6 месяцев": {
-                calculatorSteps.selectTermOfDeposit(1);
+                calculatorSteps.selectTermOfDeposit("6");
                 break;
             }
             case "9 месяцев": {
-                calculatorSteps.selectTermOfDeposit(2);
+                calculatorSteps.selectTermOfDeposit("9");
                 break;
             }
             case "12 месяцев": {
-                calculatorSteps.selectTermOfDeposit(3);
+                calculatorSteps.selectTermOfDeposit("12");
                 break;
             }
             case "3 месяцa": {
-                calculatorSteps.selectTermOfDeposit(0);
+                calculatorSteps.selectTermOfDeposit("3");
                 break;
             }
             case "13 месяцев":{
-                calculatorSteps.selectTermOfDeposit(4);
+                calculatorSteps.selectTermOfDeposit("13");
             }
         }
     }
