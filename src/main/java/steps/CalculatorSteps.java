@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -65,33 +66,37 @@ public class CalculatorSteps {
     @Step("проверено что автоматически заполнилось поле Ставка - {rate}")
 
     public void checkRateField(String rate) {
-        wait.until(ExpectedConditions.visibilityOf(BaseSteps.getDriver().findElement
-        (By.xpath("//span[@class='js-calc-rate']"))));
-        Assert.assertEquals("Ожидаемое число и действительное отличаются", rate, calculatorPage.rate
-                .getText());
+        Assert.assertTrue(String.format("В поле рассчитано значение %s. Ожидалось - %s", calculatorPage.rate.getText(),
+                rate),wait.until((ExpectedCondition<Boolean>) driver -> {
+                    String actualResult =  calculatorPage.rate.getText();
+                    return actualResult.equalsIgnoreCase(rate);}));
     }
 
     @Step("проверено что автоматически заполнилось поле Начислено - {accured}")
 
     public void checkAccuredField(String accured) {
-        wait.until(ExpectedConditions.visibilityOf(calculatorPage.accured));
-        Assert.assertEquals("Ожидаемое число и действительное отличаются", accured, calculatorPage.accured
-                .getText());
+        Assert.assertTrue(String.format("В поле рассчитано значение %s. Ожидалось - %s", calculatorPage.accured.getText(),
+                accured), wait.until((ExpectedCondition<Boolean>) driver -> {
+                    String actualResult =  calculatorPage.accured.getText();
+                    return actualResult.equalsIgnoreCase(accured);}));
     }
 
     @Step("проверено что автоматически заполнилось поле Пополнение за 9 месяцев - {replenish}")
 
     public void checkReplenishField(String replenish) {
-        wait.until(ExpectedConditions.visibilityOf(calculatorPage.replenish));
-        Assert.assertEquals("Ожидаемое число и действительное отличаются", replenish, calculatorPage.replenish
-                .getText());
+        Assert.assertTrue(String.format("В поле рассчитано значение %s. Ожидалось - %s", calculatorPage.replenish.getText(),
+                replenish), wait.until((ExpectedCondition<Boolean>) driver -> {
+                    String actualResult =  calculatorPage.replenish.getText();
+                    return actualResult.equalsIgnoreCase(replenish);}));
     }
 
     @Step("проверено что автоматически заполнилось поле К снятию через 9 месяцев – {result}")
 
     public void checkCalcResultField(String result) {
-        wait.until(ExpectedConditions.visibilityOf(calculatorPage.calcResult));
-        Assert.assertEquals("Ожидаемое число и действительное отличаются", result, calculatorPage.calcResult
-                .getText());
+        WebDriverWait wait = new WebDriverWait(BaseSteps.getDriver(), 10);
+        Assert.assertTrue(String.format("В поле рассчитано значение %s. Ожидалось - %s", calculatorPage.calcResult.getText(),
+                result), wait.until((ExpectedCondition<Boolean>) driver -> {
+                    String actualResult =  calculatorPage.calcResult.getText();
+                    return actualResult.equalsIgnoreCase(result);}));
     }
 }

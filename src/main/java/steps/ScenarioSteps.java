@@ -3,8 +3,7 @@ package steps;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.java.ru.Когда;
-import cucumber.api.java.uk.Нехай;
+
 
 public class ScenarioSteps {
 
